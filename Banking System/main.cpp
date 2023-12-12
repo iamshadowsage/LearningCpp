@@ -1,6 +1,9 @@
 #include<iostream>
 #include<string>
 #include<limits>
+#include<vector>
+
+
 
 class Customer{
 	std::string c_name,c_address;
@@ -9,12 +12,14 @@ class Customer{
 
 	long int c_balance,c_id;
 	std::string c_password;
+	std::vector<Customer> CustomerList;
 public:
 	void getinfo(std::string name,int age,long int mobile_number,std::string address);
 	static void custInfo(Customer c1);
 
 	
 };
+
 
 void Customer::getinfo(std::string name,int age,long int mobile_number,std::string address)
 {
