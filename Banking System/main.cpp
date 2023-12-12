@@ -5,6 +5,7 @@
 
 
 
+
 class Customer{
 	std::string c_name,c_address;
 	int c_age;
@@ -12,14 +13,16 @@ class Customer{
 
 	long int c_balance,c_id;
 	std::string c_password;
-	std::vector<Customer> CustomerList;
+	static std::vector<Customer> CustomerList;
 public:
 	void getinfo(std::string name,int age,long int mobile_number,std::string address);
 	static void custInfo(Customer c1);
+	static void addcustomer(Customer customer);
 
 	
 };
 
+std::vector<Customer> Customer::CustomerList;
 
 void Customer::getinfo(std::string name,int age,long int mobile_number,std::string address)
 {
@@ -36,6 +39,20 @@ void Customer::custInfo(Customer c1)
 	std::cout<<"Mobile Number : "<<c1.c_mobile<<std::endl;
 	std::cout<<"Address       : "<<c1.c_address<<std::endl;
 }
+
+void Customer::addcustomer(Customer customer)
+{
+	for(int i = 0 ; i < Customer::CustomerList.size();i++)
+	{
+		if(Customer::CustomerList[i].c_name == customer.c_name)
+		{
+			std::cout<<"Customer Already Exists"<<std::endl;
+			return;
+		}
+	}
+	Customer::CustomerList.push_back(customer);
+}
+
 
 int main()
 {
@@ -59,6 +76,10 @@ int main()
 	customer1.getinfo(name,age,mobileNumber,address);
 
 	Customer::custInfo(customer1);
+	Customer::addcustomer(customer1);
 
+	Customer customer2;
+	customer2.getinfo(name,age,mobileNumber,address);
+	Customer::addcustomer(customer2);
 	return 0;
 }
